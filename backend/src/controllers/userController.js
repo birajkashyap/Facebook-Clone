@@ -3,6 +3,7 @@ const { User } = require("../config/db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = require("../../config");
+const { authMiddleware } = require("../middlewares/authMiddleware");
 
 const signupBody = z.object({
   username: z.string().email(),
@@ -93,6 +94,29 @@ const signin = async (req, res) => {
   });
 };
 
-module.exports = { signup, signin, profilePage };
+const updateBody = z.object({
+  password: z.string().optional(),
+  firstName: z.string().optional(),
+  lastName: z.string().optional(),
+});
 
-const profilePage = (req, res) => {};
+const update = async (req, res) => {
+  const { success } = updateBody.safeParse(req.body);
+  if (!success) {
+    res.status(411).json({
+      message: "Error while updating information",
+    });
+  }
+
+  await User.updateOne(req.body, {
+    id: req.userId,
+  });
+
+  res.json({
+    message: "Updated successfully",
+  });
+};
+
+const viewProfile = (req, res) => {};
+
+module.exports = { signup, signin, viewProfile, update };
