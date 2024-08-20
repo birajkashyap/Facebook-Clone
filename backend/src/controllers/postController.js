@@ -1,3 +1,4 @@
+
 const z = require("zod");
 const { User } = require("../config/db");
 
@@ -13,4 +14,6 @@ const createPost = (req, res) => {
   });
 };
 
-const updatePost = (req, res) => {};
+const updatePost = (req, res) => {
+  res.send():
+};
