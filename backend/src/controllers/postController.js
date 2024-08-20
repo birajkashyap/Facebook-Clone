@@ -1,4 +1,5 @@
 const z = require("zod");
+const { User } = require("../config/db");
 
 const postBody = z.object({
   content: z.string(),
