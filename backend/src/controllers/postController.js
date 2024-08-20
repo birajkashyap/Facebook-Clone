@@ -11,3 +11,5 @@ const createPost = (req, res) => {
     content,
   });
 };
+
+const updatePost = (req, res) => {};
