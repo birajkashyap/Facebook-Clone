@@ -1,10 +1,13 @@
 const mongoose = require("mongoose");
-const { User, Like, FriendRequest, Post, Comment } = require("../models");
+const { User } = require("../models/user");
+const { Like } = require("../models/like");
+const { Post } = require("../models/posts");
+const { Comment } = require("../models/comment");
+const { FriendRequest } = require("../models/friendRequest");
 
 // MongoDB connection string with a specific database name
 mongoose.connect(
-  "mongodb+srv://birajkashyap:S@hil_2003@cluster0.iwwj2uo.mongodb.net/facebook_clone_db",
-  { useNewUrlParser: true, useUnifiedTopology: true }
+  "mongodb+srv://birajkashyap:S%40hil_2003@cluster0.iwwj2uo.mongodb.net/facebook"
 );
 
 // Handling connection events

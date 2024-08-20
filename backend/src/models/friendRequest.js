@@ -1,3 +1,5 @@
+const mongoose = require("mongoose");
+
 // Friend Request Schema
 const friendRequestSchema = new mongoose.Schema({
   senderId: {
@@ -16,4 +18,4 @@ const friendRequestSchema = new mongoose.Schema({
 
 const FriendRequest = mongoose.model("FriendRequest", friendRequestSchema);
 
-module.exports = FriendRequest;
+module.exports = { FriendRequest };

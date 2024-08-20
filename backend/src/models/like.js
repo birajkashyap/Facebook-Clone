@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const likeSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId, // Reference to the User model
@@ -15,4 +16,4 @@ const likeSchema = new mongoose.Schema({
 
 const Like = mongoose.model("Like", likeSchema);
 
-module.exports = Like;
+module.exports = { Like };
