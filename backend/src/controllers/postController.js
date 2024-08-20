@@ -15,5 +15,5 @@ const createPost = (req, res) => {
 };
 
 const updatePost = (req, res) => {
-  res.send():
+  
 };
