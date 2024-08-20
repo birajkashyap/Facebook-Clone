@@ -1,4 +1,3 @@
-
 const z = require("zod");
 const { User } = require("../config/db");
 
@@ -14,6 +13,6 @@ const createPost = (req, res) => {
   });
 };
 
-const updatePost = (req, res) => {
-  
+const updatePost = async (req, res) => {
+  const user = await User.findOne({ username });
 };
