@@ -2,7 +2,7 @@ const z = require("zod");
 const { User } = require("../config/db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const JWT_SECRET = require("../../config");
+const { JWT_SECRET } = require("../../config");
 
 const signupBody = z.object({
   username: z.string().email(),
@@ -13,7 +13,7 @@ const signupBody = z.object({
 
 const signup = async (req, res) => {
   // Validate request body
-  console.log(req.body);
+
   const result = signupBody.safeParse(req.body);
   if (!result.success) {
     return res.status(400).json({
@@ -108,9 +108,7 @@ const update = async (req, res) => {
     });
   }
 
-  await User.updateOne(req.body, {
-    id: req.userId,
-  });
+  await User.updateOne({ id: req.userId }, req.body);
 
   res.json({
     message: "Updated successfully",

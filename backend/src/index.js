@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json()); // for parsing application/json
 
 app.use(express.json());
-app.use("/facebook", mainRouter);
+app.use("/api", mainRouter);
 app.use(cors());
 
 app.listen(3000);
