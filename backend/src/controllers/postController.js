@@ -114,6 +114,11 @@ const editPost = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+//http://localhost:3000/api/post/editPost/66eb12949ad15cf86343e3a9
+
+//in body:{
+//    "content":"This is the updated content."
+// }
 
 // Delete Post
 const deletePost = async (req, res) => {
@@ -133,14 +138,15 @@ const deletePost = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+//http://localhost:3000/api/post/deletePost/66eb2112bc16f73dcd62b69f
 
 // Get a Single Post
 const getPost = async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id).populate(
-      "userId",
-      "username"
-    );
+    // Trim any extra whitespace or newline characters from the ID
+    const postId = req.params.id.trim();
+
+    const post = await Post.findById(postId).populate("userId", "username");
 
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
@@ -151,6 +157,7 @@ const getPost = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+//example url to test:http://localhost:3000/api/post/getPost/66eb2112bc16f73dcd62b69f
 
 // Get All Posts
 const getAllPosts = async (req, res) => {
@@ -164,7 +171,7 @@ const getAllPosts = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
-
+//eg: http://localhost:3000/api/post/getAllPosts
 module.exports = {
   createPost,
   editPost,
@@ -173,3 +180,6 @@ module.exports = {
   getAllPosts,
   upload, // Export the multer upload for image handling
 };
+
+//Since authmiddleware is being used in all of the functions always put the
+//token you get after signin in the Authorization header
